@@ -870,8 +870,8 @@ _This hook is not called during server-side rendering._
 
 ### AngularJS
 
-Angularjs 1.x has three ways to perform conditional rendering: `ng-if`, `ng-switch` and `ng-hide/ng-show`. 
- 
+Angularjs 1.x has three ways to perform conditional rendering: `ng-if`, `ng-switch` and `ng-hide/ng-show`.
+
 ```js
 export class RegistrationComponentCtrl {
     this.registrationCompleted = false;
@@ -1718,7 +1718,7 @@ class SignInController {
 
 ### Angular
 
-Angular offers two ways to build forms: 
+Angular offers two ways to build forms:
 
 * [Reactive forms](https://angular.io/guide/reactive-forms)
 * [Template-driven forms](https://angular.io/guide/forms#template-driven-forms)
@@ -1735,8 +1735,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   selector: 'reactive-form',
   template: `
     <div>
-        <form [formGroup]="form" 
-              (ngSubmit)="onSubmit(form.value, form.valid)" 
+        <form [formGroup]="form"
+              (ngSubmit)="onSubmit(form.value, form.valid)"
               novalidate>
         <div>
             <label>
@@ -1802,7 +1802,7 @@ The `novalidate` attribute in the `<form>` element prevents the browser from att
 
 ### React
 
-Two techniques exists in React to handle form data i.e. [Controlled Components](https://reactjs.org/docs/forms.html#controlled-components) and [Uncontrolled Components](https://reactjs.org/docs/uncontrolled-components.html). A controlled component keeps the input's value in the state and updates it via `setState()`. While in an uncontrolled component, form data is handled by DOM itself and referenced via `ref`. In most cases, it is recommended to use controlled components. 
+Two techniques exists in React to handle form data i.e. [Controlled Components](https://reactjs.org/docs/forms.html#controlled-components) and [Uncontrolled Components](https://reactjs.org/docs/uncontrolled-components.html). A controlled component keeps the input's value in the state and updates it via `setState()`. While in an uncontrolled component, form data is handled by DOM itself and referenced via `ref`. In most cases, it is recommended to use controlled components.
 
 ```js
 import React from 'react';
@@ -1852,7 +1852,43 @@ export default class ReactForm extends React.Component{
 
 ### Vue.js
 
-> TODO
+You can use the `v-model` directive to create **two-way data bindings** on form `input` and `textarea` elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, `v-model` is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.
+
+```html
+<template>
+  <form v-on:submit.prevent="onSubmit">
+   <label>
+       Email:
+      <input type="email" v-model="email">
+   </label>
+   <label>
+     Password:
+     <input type="password" v-model="password" />
+   </label>
+   <button type="submit">Send</button>
+  </form>
+</template>
+
+<script>
+import Auth form './util/auth.js';
+
+export default {
+  data() {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    onSubmit() {
+      Auth.sign(this.email, this.password);
+    }
+  }
+}
+</script>
+```
+
+:arrow_right: https://vuejs.org/v2/guide/forms.html
 
 # Styling
 
